@@ -1,13 +1,13 @@
 """This is a Interactive-Dictionary build using python.
-	In this i have imported two libraries.
-	first one is json which i have used for handling data and the second one is difflib which is used to tell the similarity between two
-	words. 
+	In this I have used two libraries.
+	First one is 'json' which i have used for handling data and the second one is 'difflib' which is used to tell the similarity between 
+	two words. 
 """
 
 
 
-import json
-from difflib import get_close_matches
+import json #used to handling data. 
+from difflib import get_close_matches #returns a list according to the ratio of matcheing from highest to lowest.  
 
 data = json.load(open("data.json",'r'))
 
@@ -22,7 +22,7 @@ def wordMeaning(word):
 	elif len(get_close_matches(word, data.keys())) > 0:
 		check = input("Did you mean '%s' instead ? Enter Y if yes or N if no: " % get_close_matches(word, data.keys())[0])
 		if check == "Y":
-			return data[get_close_matches(word, data.keys())[0]]
+			return data[get_close_matches(word, data.keys())[0]] #get_close_matches("word to search", "list in which we need to seach", n=3, cutoff=0.6) here n is the maximum number of close matches to return and cutoff os Possibilities that don’t score at least that similar to word are ignored. 
 		elif check == "N":
 			return "Oops! The word doesn't exists. Please double check it."
 		else:
